@@ -42,10 +42,6 @@ int audio_duration) :
 	m_progress_bar[2] = resources::get_texture("begin-progress-bar.png");
 	m_will_progress_bar = resources::get_texture("tiny-will-progress-bar.png");
 
-/*    m_background[0] = resources::get_texture(m_current_level + "/background_0.png");
-    m_background[1] = resources::get_texture(m_current_level + "/background_1.png");
-    m_background[2] = resources::get_texture(m_current_level + "/background_2.png");*/
-
     m_floor_texture = resources::get_texture(m_current_level + "/floor.png");
 
     m_collectable_icon = resources::get_texture(m_current_level + "/collectable_icon.png");

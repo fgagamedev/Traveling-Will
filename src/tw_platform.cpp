@@ -21,18 +21,22 @@ TWPlatform::TWPlatform(string current_level, double ph, double et, double eh, in
     if(ep){
         m_enemy = new TWEnemy(et, eh);
         add_child(m_enemy);
-    }else{
+    }
+	else{
         m_enemy = nullptr;
     }
 
     if(cp){
         m_collectable = new TWCollectable(current_level, ch);
         add_child(m_collectable);
-    }else{
+    }
+	else{
         m_collectable = nullptr;
     }
 
     this->set_priority(4);
+
+	m_portal = new TWPortal();	
 }
 
 TWPlatform::~TWPlatform(){

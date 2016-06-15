@@ -3,6 +3,7 @@
 
 #include "tw_enemy.h"
 #include "tw_collectable.h"
+#include "tw_portal.h"
 
 #include <memory>
 #include <iostream>
@@ -47,6 +48,7 @@ class TWPlatform : public GameObject {
         shared_ptr<Texture> m_texture, m_floor;
         TWEnemy *m_enemy;
         TWCollectable *m_collectable;
+		TWPortal *m_portal;
 };
 
 #endif
