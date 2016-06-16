@@ -8,17 +8,20 @@
 #include <ijengine/game_object.h>
 #include <ijengine/events_translator.h>
 
-class TWPortal : public GameObject, public Collidable {
+using namespace ijengine;
+
+class TWPortal : public GameObject, public Collidable{
 	public:
 		TWPortal();
 		~TWPortal();
+
         double x();
         double y();
         double height();
         double width();
         shared_ptr<Texture> texture();
 
-    protected:
+	private:
         void update_self(unsigned now, unsigned last);
         void draw_self(Canvas *canvas, unsigned now, unsigned last);
 
@@ -28,10 +31,10 @@ class TWPortal : public GameObject, public Collidable {
         void register_self(int current_x);
 
         bool active() const;
-        pair<double, double> direction() const;
+        pair <double, double> direction() const;
 
         const Rectangle& bounding_box() const;
-        const list<Rectangle>& hit_boxes() const;
+        const list <Rectangle>& hit_boxes() const;
 
         void on_collision(const Collidable *who, const Rectangle& where, const unsigned now, const unsigned last);
 

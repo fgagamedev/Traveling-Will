@@ -35,8 +35,6 @@ TWPlatform::TWPlatform(string current_level, double ph, double et, double eh, in
     }
 
     this->set_priority(4);
-
-	m_portal = new TWPortal();	
 }
 
 TWPlatform::~TWPlatform(){
