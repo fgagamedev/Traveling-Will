@@ -25,7 +25,7 @@ int audio_duration) :
     sprite_counter(0), m_sprite_speed(1/170.0),
     m_camera_x(0), m_camera_y(0), m_reverse_camera_x(1), m_reverse_camera_y(480),
     m_cur_collectable(nullptr), m_cur_enemy(nullptr),
-    m_number(resources::get_texture("numbers.png")){
+    m_number(resources::get_texture("numbers.png")), portal_able(false){
 
     //printf("Entrando em construtor\n");
 
@@ -43,6 +43,8 @@ int audio_duration) :
 	m_will_progress_bar = resources::get_texture("tiny-will-progress-bar.png");
 
     m_floor_texture = resources::get_texture(m_current_level + "/floor.png");
+
+	m_portal = new TWPortal();
 
     m_collectable_icon = resources::get_texture(m_current_level + "/collectable_icon.png");
 
@@ -131,6 +133,15 @@ void TWPlayableLevel::update_self(unsigned now, unsigned last){
         m_start = now;
         m_audio_start = m_start;
     }
+
+	double percentage_level = (m_audio_counter * 100.0) / m_audio_duration;
+	if(percentage_level >= 80 && not portal_able){
+		m_portal->set_x(m_camera_x+30);
+		m_portal->register_self(m_camera_x+30);
+		add_child(m_portal);
+
+		portal_able = true;
+	}
 
     update_counters(now);
 

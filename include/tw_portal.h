@@ -21,7 +21,6 @@ class TWPortal : public GameObject, public Collidable{
         double width();
         shared_ptr<Texture> texture();
 
-	private:
         void update_self(unsigned now, unsigned last);
         void draw_self(Canvas *canvas, unsigned now, unsigned last);
 

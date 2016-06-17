@@ -45,7 +45,7 @@ class TWPlayableLevel : public TWLevel{
         static const int ENEMY =                        1; 
         static const int PLATFORM_SIZE =                142;
 
-        bool m_is_punching, level_started, level_finished;
+        bool m_is_punching, level_started, level_finished, portal_able;
         
         int m_audio_duration, m_audio_counter;
         int n_screens, m_punch_counter;
@@ -64,6 +64,7 @@ class TWPlayableLevel : public TWLevel{
         TWWill * m_will;
         TWCollectable *m_cur_collectable;
         TWEnemy *m_cur_enemy;
+		TWPortal *m_portal;
 
         shared_ptr<Texture> m_progress_bar[3], m_will_progress_bar;
         shared_ptr<Texture> m_number, m_collectable_icon, m_floor_texture;

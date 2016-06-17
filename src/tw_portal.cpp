@@ -1,18 +1,19 @@
 #include "tw_portal.h"
 
 TWPortal::TWPortal(){
-
+	m_texture = resources::get_texture("1/portal.jpg");
 }
 
 TWPortal::~TWPortal(){
+    physics::unregister_object(this);
 }
 
 double TWPortal::x(){
-
+	return m_x;
 }
 
 double TWPortal::y(){
-
+	return m_y;
 }
 
 double TWPortal::height(){ 
@@ -31,6 +32,7 @@ void TWPortal::update_self(unsigned now, unsigned last){
 }
 
 void TWPortal::draw_self(Canvas *canvas, unsigned now, unsigned last){
+    canvas->draw(m_texture.get(), Rectangle(0, 0, 80, 340), 750, 90);
 }
 
 void TWPortal::set_x(double cx){ 
@@ -70,5 +72,6 @@ const list<Rectangle> &TWPortal::hit_boxes() const{
 }
 
 void TWPortal::on_collision(const Collidable *who, const Rectangle& where, const unsigned now, const unsigned last){
+    printf("TWWill colidiu em %.2f,%.2f em %u-%u\n", where.x(), where.y(), now, last);
 }
 
