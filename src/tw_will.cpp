@@ -1,6 +1,8 @@
 #include "tw_will.h"
 #include "tw_collectable.h"
 
+#include <ijengine/engine.h>
+
 static const int WILL_HEIGHT =              45;
 static const int WILL_WIDTH =               45;
 static const int EVENT_JUMP =               1 << 4;
@@ -62,15 +64,22 @@ bool TWWill::on_event(const GameEvent& event){
         if(event.id() == EVENT_JUMP){
             m_y_speed = -0.25;
             this->set_state(JUMPING);
+            audio::play_sound_effect("res/effects/jump.wav");
             return true;
         }   
 
         if(event.id() == EVENT_SLIDE_PRESSED && m_state != JUMPING && m_state != FALLING){
+            if(this->state() != SLIDING)
+                audio::play_sound_effect("res/effects/slide.wav");
+
             this->set_state(SLIDING);
             return true;
         }
 
         if(event.id() == EVENT_SLIDE_RELEASED && m_state == SLIDING){
+            if(this->state() != RUNNING)
+                audio::play_sound_effect("res/effects/slide.wav");
+
             this->set_state(RUNNING);
             return true;
         }

@@ -28,6 +28,9 @@ int audio_duration) :
 
     ////printf("Entrando em construtor\n");
 
+    // audio::set_audio_volume(0.2);
+    audio::set_sound_effect_volume(1);
+
 	m_current_level = current_level;
 	m_audio = audio_path;
 	m_next = next_level;
@@ -195,7 +198,7 @@ void TWPlayableLevel::update_platforms_position(){
         current_x = platforms[i]->x();
         height = platforms[i]->height();
 
-        // ////printf("i:%d, x: %d, m_floor: %.2f, height: %.2f \n", i, current_x, m_floor, 480.0 - height - WILL_HEIGHT);
+        //printf("i:%d, x: %d, m_floor: %.2f, height: %.2f \n", i, current_x, m_floor, 480.0 - height - WILL_HEIGHT);
         if(current_x >= m_will->x() && current_x + 142 <= m_will->x() + WILL_WIDTH){
             m_floor = min(480.0 - height - WILL_HEIGHT, m_floor);
         }

@@ -59,6 +59,8 @@ const list<Rectangle>& TWCollectable::hit_boxes() const{
 void TWCollectable::on_collision(const Collidable *who, const Rectangle& where, const unsigned now, const unsigned last){
     //printf("TWCollectable colidiu em %.2f,%.2f em %u-%u\n", where.x(), where.y(), now, last);
     m_active = false;
+
+    audio::play_sound_effect("res/effects/collect.wav");
 }
 
 void TWCollectable::update_self(unsigned now, unsigned) {

@@ -60,6 +60,8 @@ string TWMenu::audio() const{
 
 bool TWMenu::on_event(const GameEvent& event){
 	if(event.id() == GAME_MOUSE_CLICK){
+		audio::play_sound_effect("res/effects/click.wav");
+
 		double mouse_x = event.get_property<double>("x");
 		double mouse_y = event.get_property<double>("y");
 
