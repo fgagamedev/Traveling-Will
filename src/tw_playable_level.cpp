@@ -29,7 +29,7 @@ int audio_duration) :
     ////printf("Entrando em construtor\n");
 
     // audio::set_audio_volume(0.2);
-    audio::set_sound_effect_volume(1);
+    // audio::set_sound_effect_volume(1);
 
 	m_current_level = current_level;
 	m_audio = audio_path;

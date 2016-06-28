@@ -63,8 +63,8 @@ bool TWWill::on_event(const GameEvent& event){
 
         if(event.id() == EVENT_JUMP){
             m_y_speed = -0.25;
-            this->set_state(JUMPING);
             audio::play_sound_effect("res/effects/jump.wav");
+            this->set_state(JUMPING);
             return true;
         }   
 
