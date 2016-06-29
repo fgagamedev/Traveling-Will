@@ -63,7 +63,7 @@ bool TWWill::on_event(const GameEvent& event){
 
         if(event.id() == EVENT_JUMP){
             m_y_speed = -0.25;
-            audio::play_sound_effect("res/effects/jump.wav");
+            // audio::play_sound_effect("res/effects/jump.wav");
             this->set_state(JUMPING);
             return true;
         }   
@@ -109,7 +109,7 @@ void TWWill::on_collision(const Collidable *who, const Rectangle& where, const u
     //printf("TWWill colidiu em %.2f,%.2f em %u-%u\n", where.x(), where.y(), now, last);
 
     if(auto p = dynamic_cast<const TWCollectable *>(who)){
-         m_collectables++;
+        m_collectables++;
      } //else if(auto q = dynamic_cast<const TWEnemy *>(who)){
     //     q->set_active(false);
     // }
