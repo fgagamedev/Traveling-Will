@@ -241,10 +241,13 @@ void TWPlayableLevel::update_counters(unsigned now){
 			exit(1);
 		}
 		
-		int v[1];
-		v[0] = m_will->collectables();
+		int v[2];
+		int n_defeated_enemies = 3;
 
-		fwrite(&v[0], sizeof(int), 1, result);
+		v[0] = m_will->collectables();
+		v[1] = n_defeated_enemies;
+
+		fwrite(&v[0], sizeof(int), 2, result);
 		fclose(result);
 
         m_done = true;

@@ -2,6 +2,7 @@
 #define TW_RESULT_H
 
 #include "tw_level.h"
+#include "tw_button.h"
 
 using std::string;
 using std::shared_ptr;
@@ -25,9 +26,10 @@ class TWResult : public TWLevel{
 
 	private:
 		double MINIMUM_PERCENTAGE = 1.0;
-		
-		shared_ptr<Texture> final_texture;
 
+		int n_collectables, n_defeated_enemies;
+		
+		shared_ptr<Texture> final_texture, numbers;
 };
 
 #endif
