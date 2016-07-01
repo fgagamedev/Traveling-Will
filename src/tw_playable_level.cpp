@@ -230,8 +230,23 @@ void TWPlayableLevel::update_counters(unsigned now){
     }
 
     //Checking if music has ended
-    if(m_audio_duration != -1 && m_audio_counter >= m_audio_duration){
+	if(m_audio_counter > 5000){
+//    if((m_audio_duration != -1 && m_audio_counter >= m_audio_duration)){
         m_will->set_state(RUNNING);
+
+		FILE *result = fopen("result.dat", "wb");
+
+		if (not result){
+			printf("Não foi possível abrir o arquivo result.dat\n");
+			exit(1);
+		}
+		
+		int v[1];
+		v[0] = m_will->collectables();
+
+		fwrite(&v[0], sizeof(int), 1, result);
+		fclose(result);
+
         m_done = true;
     }
 

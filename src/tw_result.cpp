@@ -21,6 +21,25 @@ TWResult::TWResult(const string &current_level, const string& next_level, const 
 	m_state = NOTHING;
 	m_start = -1;
 
+	FILE *result = fopen("result.dat", "rb");
+	int v[1];
+
+	if(not result){
+		printf("Não foi possível abrir o arquivo result.dat\n");
+		exit(1);
+	}
+
+	fread(&v[0], sizeof(int), 1, result);
+
+	double max_col = 500;
+	double percentage = (100.0 * v[0])/max_col;
+
+	if(percentage >= MINIMUM_PERCENTAGE){
+		final_texture = resources::get_texture(m_current_level + "/ganhou.png");
+	}else{
+		final_texture = resources::get_texture(m_current_level + "/perdeu.png");
+	}
+
 	event::register_listener(this);
 }
 
@@ -52,4 +71,7 @@ void TWResult::update_self(unsigned, unsigned){
 }
 
 void TWResult::draw_self(Canvas *canvas, unsigned, unsigned){
+	canvas->clear();
+	
+	canvas->draw(final_texture.get(), Rectangle(0, 0, 852, 480), 0, 0);
 }

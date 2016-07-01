@@ -22,6 +22,12 @@ class TWResult : public TWLevel{
 	protected:
 		void update_self(unsigned, unsigned last);
 		void draw_self(Canvas *canvas, unsigned, unsigned last);
+
+	private:
+		double MINIMUM_PERCENTAGE = 1.0;
+		
+		shared_ptr<Texture> final_texture;
+
 };
 
 #endif
