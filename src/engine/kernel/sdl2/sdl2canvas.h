@@ -1,7 +1,7 @@
 #ifndef IJENGINE_SDL2CANVAS_H
 #define IJENGINE_SDL2CANVAS_H
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include "canvas.h"
 
 using namespace ijengine;

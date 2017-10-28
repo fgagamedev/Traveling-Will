@@ -2,7 +2,7 @@
 #include "sdl2animation.h"
 #include <iostream>
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 namespace ijengine {
 

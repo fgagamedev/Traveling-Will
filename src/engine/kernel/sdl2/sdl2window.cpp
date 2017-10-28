@@ -1,7 +1,7 @@
 #include "sdl2window.h"
 #include "sdl2canvas.h"
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 
 SDL2Window::SDL2Window(SDL_Window *window, SDL_Renderer *renderer) :

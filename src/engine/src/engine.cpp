@@ -289,26 +289,18 @@ namespace ijengine
         shared_ptr<Texture>
         get_texture(const string& name)
         {
-            std::cout << "BLA BLA 1" << std::endl;
-
             if (not canvas)
                 throw Exception("Can't load textures with a null canvas\n");
 
-            std::cout << "BLA BLA 2" << std::endl;
             auto it = textures.find(name);
-
             if (it != textures.end())
                 return it->second;
-
-            std::cout << "BLA BLA 3" << std::endl;
 
             string filepath = textures_dir_path + "/" + name;
             Texture *texture = kernel->load_texture(canvas, filepath);
 
             if (not texture)
                 throw Exception("Can't load texture " + filepath);
-
-            std::cout << "BLA BLA 4" << std::endl;
 
             textures[name] = shared_ptr<Texture>(texture);
 

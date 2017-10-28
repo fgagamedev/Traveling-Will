@@ -1,1 +1,3 @@
-libs/*
+src/*_debug
+src/*_release
+src/*o

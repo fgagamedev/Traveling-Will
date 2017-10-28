@@ -2,7 +2,7 @@
 #include "sdl2font.h"
 #include "sdl2canvas.h"
 #include "sdl2texture.h"
-#include <SDL2/SDL_image.h>
+#include <SDL_image.h>
 
 using namespace ijengine;
 

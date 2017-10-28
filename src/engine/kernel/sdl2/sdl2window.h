@@ -2,7 +2,7 @@
 #define IJENGINE_SDL2_WINDOW_H
 
 #include "window.h"
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 using namespace ijengine;
 

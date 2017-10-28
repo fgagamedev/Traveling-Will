@@ -1,7 +1,7 @@
 #ifndef IJENGINE_SDL2TIME_H
 #define IJENGINE_SDL2TIME_H
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include "time.h"
 
 using namespace ijengine;

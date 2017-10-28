@@ -4,7 +4,7 @@
 #include "time.h"
 #include "kernel.h"
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include <map>
 
 using namespace ijengine;
@@ -14,7 +14,7 @@ class SDL2Kernel : public Kernel {
 public:
     SDL2Kernel();
     ~SDL2Kernel();
-    
+
     Window * create_window(const string& title, int w, int h, double scale);
 
 	void set_full_screen(int mode);

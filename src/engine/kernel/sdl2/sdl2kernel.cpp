@@ -11,10 +11,12 @@
 #include "joystick_event.h"
 #include "mouse_event.h"
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_mixer.h>
-#include <SDL2/SDL_ttf.h>
+#include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_mixer.h>
+#include <SDL_ttf.h>
+#include <string>
+#include <iostream>
 
 using namespace ijengine;
 
@@ -24,14 +26,16 @@ static KeyboardEvent::Modifier key_modifier(Uint16 modifier);
 SDL2Kernel::SDL2Kernel()
 {
     int rc = SDL_Init(SDL_INIT_VIDEO);
+    string message = SDL_GetError();
 
     if (rc)
-        throw Exception("Error on init:" + SDL_GetError());
+        throw Exception("Error on init: " + message);
 
     rc = TTF_Init();
+    message = SDL_GetError();
 
     if (rc)
-        throw Exception("Error on ttf init:" + SDL_GetError());
+        throw Exception("Error on ttf init: " + message);
 
     m_timer = new SDL2Time();
     m_last_update = 0;
@@ -525,20 +529,23 @@ SDL2Kernel::resume_timer() {
 Texture *
 SDL2Kernel::load_texture(const Canvas* c, const string& filepath)
 {
+
     const SDL2Canvas *canvas = dynamic_cast<const SDL2Canvas *>(c);
     SDL_Renderer *renderer = canvas->renderer();
 
     SDL_Texture *texture = IMG_LoadTexture(renderer, filepath.c_str());
+    string message = SDL_GetError();
 
     if (not texture)
-        throw Exception("Error on texture load:" + SDL_GetError());
+        throw Exception("Error on texture load: " + message);
 
     int w, h;
 
     int rc = SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
+    message = SDL_GetError();
 
     if (rc)
-        throw Exception("Error on query texture:" + SDL_GetError());
+        throw Exception("Error on query texture: " + message);
 
     SDL2Texture *t = new SDL2Texture(texture, w, h);
     return t;
@@ -548,9 +555,10 @@ Font *
 SDL2Kernel::load_font(const string& filepath, unsigned size)
 {
     TTF_Font *font = TTF_OpenFont(filepath.c_str(), size);
+    string message = TTF_GetError();
 
     if (not font)
-        throw Exception("Error on open font:" + TTF_GetError());
+        throw Exception("Error on open font: " + message);
 
     SDL2Font *f = new SDL2Font(filepath, size, font);
     return f;

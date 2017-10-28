@@ -2,7 +2,7 @@
 #define IJENGINE_SDL2_FONT_H
 
 #include "font.h"
-#include <SDL2/SDL_ttf.h>
+#include <SDL_ttf.h>
 
 using namespace ijengine;
 
@@ -27,7 +27,7 @@ private:
     string m_name;
     unsigned m_size;
     TTF_Font *m_font;
- 
+
 };
 
 #endif
