@@ -1,12 +1,12 @@
 #ifndef TW_GAME_H
 #define TW_GAME_H
 
-#include <ijengine/game.h>
-#include <ijengine/engine.h>
-#include <ijengine/mouse_event.h>
-#include <ijengine/system_event.h>
-#include <ijengine/keyboard_event.h>
-#include <ijengine/events_translator.h>
+#include <game.h>
+#include <engine.h>
+#include <mouse_event.h>
+#include <system_event.h>
+#include <keyboard_event.h>
+#include <events_translator.h>
 
 #include "tw_level_factory.h"
 

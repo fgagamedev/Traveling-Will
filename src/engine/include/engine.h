@@ -9,8 +9,10 @@ using std::string;
 using std::unique_ptr;
 using std::shared_ptr;
 
+string resources_dir_path();
+
 namespace ijengine {
-    
+
     class Lib;
     class Font;
     class Level;
@@ -21,16 +23,16 @@ namespace ijengine {
     class LevelFactory;
     class EventsTranslator;
     class GameEventsListener;
-    
+
     class Engine {
     public:
         Engine();
-        ~Engine();    
-        
+        ~Engine();
+
     private:
         unique_ptr<Lib> m_kernel_lib;
     };
-    
+
     namespace video {
         Window * create_window(const string& title, int w, int h, double scale);
 		void set_full_screen(int mode);
@@ -54,7 +56,7 @@ namespace ijengine {
         void unregister_translator(EventsTranslator *translator);
         void register_listener(GameEventsListener *listener);
         void unregister_listener(GameEventsListener *listener);
-        pair<int, int> mouse_position(); 
+        pair<int, int> mouse_position();
     }
 
     namespace time {

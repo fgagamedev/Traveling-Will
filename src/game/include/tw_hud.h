@@ -4,10 +4,10 @@
 #include <map>
 #include <vector>
 #include <iostream>
-#include <ijengine/engine.h>
-#include <ijengine/canvas.h>
-#include <ijengine/rectangle.h>
-#include <ijengine/game_object.h>
+#include <engine.h>
+#include <canvas.h>
+#include <rectangle.h>
+#include <game_object.h>
 
 using namespace ijengine;
 using std::shared_ptr;

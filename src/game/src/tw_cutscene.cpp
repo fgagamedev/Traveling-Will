@@ -1,8 +1,8 @@
 #include "tw_cutscene.h"
 
-#include <ijengine/canvas.h>
-#include <ijengine/engine.h>
-#include <ijengine/keyboard_event.h>
+#include <canvas.h>
+#include <engine.h>
+#include <keyboard_event.h>
 
 #include <unistd.h>
 
@@ -41,7 +41,7 @@ TWCutscene::TWCutscene(const string &current_level, const string& next_level, co
 	// for(auto btn : m_buttons){
 	// 	add_child(btn);
 	// }
-	
+
 	event::register_listener(this);
 }
 

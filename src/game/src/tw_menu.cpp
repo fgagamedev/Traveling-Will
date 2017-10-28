@@ -1,8 +1,8 @@
 #include "tw_menu.h"
 
-#include <ijengine/canvas.h>
-#include <ijengine/engine.h>
-#include <ijengine/keyboard_event.h>
+#include <canvas.h>
+#include <engine.h>
+#include <keyboard_event.h>
 
 #include <unistd.h>
 
@@ -22,7 +22,11 @@ TWMenu::TWMenu(const string &current_level, const string& next_level, const stri
 	m_start = -1;
 	on_credit = false;
 
+	cout << m_current_level << endl;
+
 	m_background[0] = resources::get_texture(m_current_level + "/menu-fundo.png");
+	cout << m_current_level << endl;
+
 	m_background[1] = resources::get_texture(m_current_level + "/menu-titulo.png");
 
     int n_levels = 6;
@@ -116,7 +120,7 @@ void TWMenu::do_action(string label){
 		m_done = true;
 	}
 	if(label == "exit"){
-		audio::play_sound_effect("res/effects/exit.wav");
+		audio::play_sound_effect("resources/effects/exit.wav");
 		exit(0);
 	}
 }

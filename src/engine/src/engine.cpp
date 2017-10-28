@@ -18,63 +18,64 @@
 #include <list>
 #include <memory>
 #include <utility>
+#include <iostream>
 
 using namespace std;
 
-namespace ijengine 
+namespace ijengine
 {
     static Kernel *kernel = nullptr;
-    
+
     Engine::Engine()
     {
-        auto files = os::list_files("libs");
+        auto files = os::list_files("lib");
         string path("");
-        
+
         for (auto file : files)
-            if (file.find("kernel") != string::npos) 
+            if (file.find("kernel") != string::npos)
             {
-                path = "libs/" + file;
+                path = "lib/" + file;
                 break;
             }
-            
+
         if (path.size() == 0)
             throw Exception("Kernel not found in libs dir");
-            
+
         m_kernel_lib = unique_ptr<Lib>(os::load_lib(path));
-        
+
         if (not m_kernel_lib)
             throw Exception("Can't load kernel lib");
-            
+
         auto sym = m_kernel_lib->symbol("create_kernel");
-                          
+
         if (not sym)
             throw Exception("Invalid kernel: missing create_kernel()");
-            
+
         Kernel * (*create)();
         *reinterpret_cast<void **>(&create) = sym;
-        
+
         kernel = create();
-        
+
         if (not kernel)
             throw Exception("Can't create the kernel");
     }
-    
+
     Engine::~Engine()
     {
         resources::release_all();
 
         auto sym = m_kernel_lib->symbol("destroy_kernel");
-                          
+
         if (not sym)
             throw Exception("Invalid kernel: missing destroy_kernel()");
-            
+
         void (*destroy)(Kernel *);
         *reinterpret_cast<void **>(&destroy) = sym;
-        
+
         destroy(kernel);
     }
-    
-    namespace video 
+
+    namespace video
     {
         Window *
         create_window(const string& title, int w, int h, double scale)
@@ -288,19 +289,26 @@ namespace ijengine
         shared_ptr<Texture>
         get_texture(const string& name)
         {
+            std::cout << "BLA BLA 1" << std::endl;
+
             if (not canvas)
                 throw Exception("Can't load textures with a null canvas\n");
 
+            std::cout << "BLA BLA 2" << std::endl;
             auto it = textures.find(name);
 
             if (it != textures.end())
                 return it->second;
+
+            std::cout << "BLA BLA 3" << std::endl;
 
             string filepath = textures_dir_path + "/" + name;
             Texture *texture = kernel->load_texture(canvas, filepath);
 
             if (not texture)
                 throw Exception("Can't load texture " + filepath);
+
+            std::cout << "BLA BLA 4" << std::endl;
 
             textures[name] = shared_ptr<Texture>(texture);
 
@@ -337,7 +345,7 @@ namespace ijengine
             if (target == c)
                 target = nullptr;
         }
-        
+
         Rectangle
         collision(Collidable *a, Collidable *b)
         {

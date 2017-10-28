@@ -1,13 +1,13 @@
 #ifndef TW_WILL_H
 #define TW_WILL_H
 
-#include <ijengine/engine.h>
-#include <ijengine/collidable.h>
-#include <ijengine/canvas.h>
-#include <ijengine/texture.h>
-#include <ijengine/game_object.h>
-#include <ijengine/events_translator.h>
-#include <ijengine/game_events_listener.h>
+#include <engine.h>
+#include <collidable.h>
+#include <canvas.h>
+#include <texture.h>
+#include <game_object.h>
+#include <events_translator.h>
+#include <game_events_listener.h>
 
 using std::shared_ptr;
 using namespace ijengine;

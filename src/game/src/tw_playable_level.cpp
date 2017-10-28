@@ -1,9 +1,9 @@
 #include "tw_will.h"
 #include "tw_playable_level.h"
 
-#include <ijengine/canvas.h>
-#include <ijengine/engine.h>
-#include <ijengine/keyboard_event.h>
+#include <canvas.h>
+#include <engine.h>
+#include <keyboard_event.h>
 
 #include <unistd.h>
 #include <cmath>
@@ -15,8 +15,8 @@
 using namespace std;
 using namespace ijengine;
 
-TWPlayableLevel::TWPlayableLevel(const string &current_level, const string& next_level, const string audio_path, 
-int audio_duration) : 
+TWPlayableLevel::TWPlayableLevel(const string &current_level, const string& next_level, const string audio_path,
+int audio_duration) :
 	m_is_punching(false), level_started(false), level_finished(false),
     m_audio_duration(audio_duration), m_audio_counter(0),
     m_punch_counter(0), n_collectables(0), n_enemies(0), m_y_speed(0),
@@ -43,7 +43,7 @@ int audio_duration) :
     m_floor_texture = resources::get_texture(m_current_level + "/floor.png");
 
 	//Read level design from txt
-	fstream level_design("res/" + m_current_level + "/level_design.txt");
+	fstream level_design("resources/" + m_current_level + "/level_design.txt");
 
 	if(not level_design.is_open()){
 		printf("Level design txt not available\n");
@@ -123,7 +123,7 @@ int audio_duration) :
     }
 
     level_design.close();
-    
+
     //Sets initial will height based on level design
     m_floor = 480 - platforms[0]->height() - WILL_HEIGHT;
 

@@ -26,12 +26,12 @@ SDL2Kernel::SDL2Kernel()
     int rc = SDL_Init(SDL_INIT_VIDEO);
 
     if (rc)
-        throw Exception("Error on SDL2 initialization");
+        throw Exception("Error on init:" + SDL_GetError());
 
     rc = TTF_Init();
 
     if (rc)
-        throw Exception("Error on SDL2_ttf initialization");
+        throw Exception("Error on ttf init:" + SDL_GetError());
 
     m_timer = new SDL2Time();
     m_last_update = 0;
@@ -410,7 +410,7 @@ SDL2Kernel::pending_keyboard_events(unsigned now) {
             bool repeated = it->key.repeat != 0;
             auto event = KeyboardEvent(timestamp,
                 KeyboardEvent::State::PRESSED,
-                m_key_table[it->key.keysym.sym],   
+                m_key_table[it->key.keysym.sym],
                 key_modifier(it->key.keysym.mod),
                 repeated);
 
@@ -421,7 +421,7 @@ SDL2Kernel::pending_keyboard_events(unsigned now) {
             bool repeated = it->key.repeat != 0;
             auto event = KeyboardEvent(timestamp,
                 KeyboardEvent::State::RELEASED,
-                m_key_table[it->key.keysym.sym],   
+                m_key_table[it->key.keysym.sym],
                 key_modifier(it->key.keysym.mod),
                 repeated);
 
@@ -430,9 +430,9 @@ SDL2Kernel::pending_keyboard_events(unsigned now) {
         } else
             ++it;
     }
- 
+
     return events;
-} 
+}
 
 list<MouseEvent>
 SDL2Kernel::pending_mouse_events(unsigned now)
@@ -531,14 +531,14 @@ SDL2Kernel::load_texture(const Canvas* c, const string& filepath)
     SDL_Texture *texture = IMG_LoadTexture(renderer, filepath.c_str());
 
     if (not texture)
-        throw Exception(SDL_GetError());
+        throw Exception("Error on texture load:" + SDL_GetError());
 
     int w, h;
 
     int rc = SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
 
     if (rc)
-        throw Exception(SDL_GetError());
+        throw Exception("Error on query texture:" + SDL_GetError());
 
     SDL2Texture *t = new SDL2Texture(texture, w, h);
     return t;
@@ -550,7 +550,7 @@ SDL2Kernel::load_font(const string& filepath, unsigned size)
     TTF_Font *font = TTF_OpenFont(filepath.c_str(), size);
 
     if (not font)
-        throw Exception(TTF_GetError());
+        throw Exception("Error on open font:" + TTF_GetError());
 
     SDL2Font *f = new SDL2Font(filepath, size, font);
     return f;
