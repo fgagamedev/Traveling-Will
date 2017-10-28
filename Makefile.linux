@@ -34,6 +34,6 @@ export STATIC_LIB_SUFFIX=
 export OBJ_EXTENSION=.o
 
 # Platform specific libs
-export EXTRA_LIBS=-lcaca -lwebp -lpng12 -ljpeg
+export EXTRA_LIBS=-lcaca -lwebp -lpng12 -ljpeg -ldl
 
 include Makefile.common
